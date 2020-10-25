@@ -54,7 +54,6 @@ public class Login extends javax.swing.JFrame {
 
         jButton2.setText("CANCEL");
 
-        jTextField1.setText("This is a trial text");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);

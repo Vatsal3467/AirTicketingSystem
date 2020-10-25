@@ -343,6 +343,8 @@ public class Signup extends javax.swing.JFrame {
         String Answer = answer.getText();
 
         
+        if(Pass.equals(Passcon)){
+            
         
         
         try {
@@ -383,6 +385,10 @@ public class Signup extends javax.swing.JFrame {
             // TODO add your handling code here:
         } catch (SQLException ex) {
             Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"Password Does not match");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 

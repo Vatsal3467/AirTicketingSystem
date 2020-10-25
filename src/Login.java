@@ -64,7 +64,6 @@ public class Login extends javax.swing.JFrame {
 
         jButton4.setText("SIGN-UP");
 
-        jPasswordField1.setText("jPasswordField1");
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);

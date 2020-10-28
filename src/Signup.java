@@ -301,7 +301,7 @@ public class Signup extends javax.swing.JFrame {
 
         Login L=new Login();
         L.setVisible(true);
-        this.hide();
+        this.dispose();
         
 
         // TODO add your handling code here:

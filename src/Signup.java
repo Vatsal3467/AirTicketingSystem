@@ -27,8 +27,8 @@ public class Signup extends javax.swing.JFrame {
     public void Connect()
     {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/ARS","root","Vatsal@123");
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            con=DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
             
             
         } catch (ClassNotFoundException ex) {
@@ -166,7 +166,7 @@ public class Signup extends javax.swing.JFrame {
 
         sex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
 
-        sq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What is your favorite color", "Which is your favorite place" }));
+        sq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What is your favorite color", "Which is your favorite place", "What is your first school name", "what is your mother name" }));
 
         jButton5.setText("Cancel");
 
@@ -348,7 +348,7 @@ public class Signup extends javax.swing.JFrame {
         
         
         try {
-            stm = con.prepareStatement("INSERT INTO CustInfo(first_name,Age,Email_ID,sex,DOB,Pass,SQ,answer)values(?,?,?,?,?,?,?,?)");
+            stm = con.prepareStatement("INSERT INTO Cust_Info(First_Name,Age,Email_ID,Sex,DOB,Pass,SQ,Answer)values(?,?,?,?,?,?,?,?)");
             stm.setString(1, Name);
             stm.setString(2, Age);
             stm.setString(3, Email);

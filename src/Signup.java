@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Vatsal
@@ -22,26 +23,19 @@ public class Signup extends javax.swing.JFrame {
     }
     Connection con;
     PreparedStatement stm;
-    
-    
-    public void Connect()
-    {
+
+    public void Connect() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con=DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
-            
-            
+            con = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-                
+
     }
-     
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -289,10 +283,9 @@ public class Signup extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        Login L=new Login();
+        Login L = new Login();
         L.setVisible(true);
         this.dispose();
-        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -323,76 +316,64 @@ public class Signup extends javax.swing.JFrame {
         String Passcon = passcon.getText();
         String SQ = sq.getSelectedItem().toString();
         String Answer = answer.getText();
-        if(Email.contains("@")){
-                 
+        if (Email.contains("@")) {
 
-        
-        if(Pass.equals(Passcon) && Pass.length() >= 5){
-            
-        
-        
-        try {
-            stm = con.prepareStatement("INSERT INTO Cust_Info(First_Name,Age,Email_ID,Sex,DOB,Pass,SQ,Answer)values(?,?,?,?,?,?,?,?)");
-            stm.setString(1, Name);
-            stm.setString(2, Age);
-            stm.setString(3, Email);
-            stm.setString(4, Sex);
-            stm.setString(5, DOB);
-            stm.setString(6, Pass);
-            stm.setString(7, SQ);
-            stm.setString(8, Answer);
-            int s = stm.executeUpdate();
-            
-            if(s==1)
-            {
-                JOptionPane.showMessageDialog(this,"Account Created Successfully");
-                
-                name.setText("");
-                age.setText("");
-                email.setText("");
-                sex.setSelectedIndex(-1);
-                dob.setText("");
-                pass.setText("");
-                passcon.setText("");
-                sq.setSelectedIndex(-1);
-                answer.setText("");
-                name.requestFocus();
-                
-                
+            if (Pass.equals(Passcon) && Pass.length() >= 5) {
+
+                try {
+                    stm = con.prepareStatement("INSERT INTO Cust_Info(First_Name,Age,Email_ID,Sex,DOB,Pass,SQ,Answer)values(?,?,?,?,?,?,?,?)");
+                    stm.setString(1, Name);
+                    stm.setString(2, Age);
+                    stm.setString(3, Email);
+                    stm.setString(4, Sex);
+                    stm.setString(5, DOB);
+                    stm.setString(6, Pass);
+                    stm.setString(7, SQ);
+                    stm.setString(8, Answer);
+                    int s = stm.executeUpdate();
+
+                    if (s == 1) {
+                        JOptionPane.showMessageDialog(this, "Account Created Successfully");
+
+                        name.setText("");
+                        age.setText("");
+                        email.setText("");
+                        sex.setSelectedIndex(-1);
+                        dob.setText("");
+                        pass.setText("");
+                        passcon.setText("");
+                        sq.setSelectedIndex(-1);
+                        answer.setText("");
+                        name.requestFocus();
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Account Not Created");
+                    }
+
+                    // TODO add your handling code here:
+                } catch (SQLException ex) {
+                    Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Password Does not match or The Password is too Small");
             }
-            else
-            {
-                JOptionPane.showMessageDialog(this,"Account Not Created");
-            }
-            
-            
-            // TODO add your handling code here:
-        } catch (SQLException ex) {
-            Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }
-        else{
-            JOptionPane.showMessageDialog(this,"Password Does not match or The Password is too Small");
-        }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "Please Enter valid Email Address");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-
         name.setText("");
-                age.setText("");
-                email.setText("");
-                sex.setSelectedIndex(-1);
-                dob.setText("");
-                pass.setText("");
-                passcon.setText("");
-                sq.setSelectedIndex(-1);
-                answer.setText("");
-                name.requestFocus();
+        age.setText("");
+        email.setText("");
+        sex.setSelectedIndex(-1);
+        dob.setText("");
+        pass.setText("");
+        passcon.setText("");
+        sq.setSelectedIndex(-1);
+        answer.setText("");
+        name.requestFocus();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed

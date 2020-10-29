@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Vatsal
@@ -20,10 +21,10 @@ public class myprofile extends javax.swing.JFrame {
     public myprofile() {
         initComponents();
         Connect();
- 
+
     }
-    
-    public myprofile(String mail, String password){
+
+    public myprofile(String mail, String password) {
         initComponents();
         Connect();
         try {
@@ -31,60 +32,57 @@ public class myprofile extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(myprofile.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    
+
     }
-  Connection con;
-  PreparedStatement stm;
-  ResultSet result;
-    
-    public void Connect()
-    {
+    Connection con;
+    PreparedStatement stm;
+    ResultSet result;
+
+    public void Connect() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con=DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
-            
-            
+            con = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-                
+
     }
-    
-   public void display(String mail, String password) throws SQLException{
-              
-        String query = "Select * from Cust_Info where Email_ID='"+mail+"' and Pass ='"+password+"'";
+
+    public void display(String mail, String password) throws SQLException {
+
+        String query = "Select * from Cust_Info where Email_ID='" + mail + "' and Pass ='" + password + "'";
         try {
-           Statement stm = con.createStatement();
+            Statement stm = con.createStatement();
             result = stm.executeQuery(query);
         } catch (SQLException ex) {
             Logger.getLogger(myprofile.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if(result.next()){
-        String Name = result.getString("First_Name");
-        String Age = result.getString("Age");
-        String emailid = result.getString("Email_ID");
-        String Dob = result.getString("DOB");
-        String Pass=result.getString("Pass");
-        String Ans=result.getString("Answer");
-        //String lastName = rs.getString("last_name");
-        //Date dateCreated = rs.getDate("date_created");
-        //boolean isAdmin = rs.getBoolean("is_admin");
-        //int numPoints = rs.getInt("num_points");
-        String Title = "Hi, " + Name;
-        name.setText(Name);
-        age.setText(Age);
-        dob.setText(Dob);
-        email.setText(emailid);
-        pass.setText(Pass);
-        ans.setText(Ans);
-        title.setText(Title);
+
+        if (result.next()) {
+            String Name = result.getString("First_Name");
+            String Age = result.getString("Age");
+            String emailid = result.getString("Email_ID");
+            String Dob = result.getString("DOB");
+            String Pass = result.getString("Pass");
+            String Ans = result.getString("Answer");
+            //String lastName = rs.getString("last_name");
+            //Date dateCreated = rs.getDate("date_created");
+            //boolean isAdmin = rs.getBoolean("is_admin");
+            //int numPoints = rs.getInt("num_points");
+            String Title = "Hi, " + Name;
+            name.setText(Name);
+            age.setText(Age);
+            dob.setText(Dob);
+            email.setText(emailid);
+            pass.setText(Pass);
+            ans.setText(Ans);
+            title.setText(Title);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -252,9 +250,9 @@ public class myprofile extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                     .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,41 +287,35 @@ public class myprofile extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        String Name=name.getText();
-        String Age=age.getText();
-        String Dob=dob.getText();
-        String Email=email.getText();
-        String Pass=pass.getText();
-        String Ans=ans.getText();
-        
+        String Name = name.getText();
+        String Age = age.getText();
+        String Dob = dob.getText();
+        String Email = email.getText();
+        String Pass = pass.getText();
+        String Ans = ans.getText();
+
         try {
             stm = con.prepareStatement("UPDATE Cust_Info SET First_Name = ?, Age = ?, DOB = ?, Pass = ?, Answer = ? WHERE Email_ID = ?");
-            stm.setString(1,Name);
-        stm.setString(2,Age);
-        stm.setString(3,Dob);
-        
-        stm.setString(4,Pass);
-        stm.setString(5,Ans);
-        stm.setString(6,Email);
-        int s = stm.executeUpdate();
-            
-            if(s==1)
-            {
-                JOptionPane.showMessageDialog(this,"Account Updated Successfully");
-                
-                   
-                
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(this,"Account Not Updated");
+            stm.setString(1, Name);
+            stm.setString(2, Age);
+            stm.setString(3, Dob);
+
+            stm.setString(4, Pass);
+            stm.setString(5, Ans);
+            stm.setString(6, Email);
+            int s = stm.executeUpdate();
+
+            if (s == 1) {
+                JOptionPane.showMessageDialog(this, "Account Updated Successfully");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Account Not Updated");
             }
         } catch (SQLException ex) {
             Logger.getLogger(myprofile.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-        
-        
+
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

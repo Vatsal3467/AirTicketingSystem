@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Vatsal
@@ -167,7 +168,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        Signup s=new Signup();
+        Signup s = new Signup();
         s.setVisible(true);
         this.dispose();
         // TODO add your handling code here:
@@ -176,42 +177,38 @@ public class Login extends javax.swing.JFrame {
 //PreparedStatement stm;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-       PreparedStatement stm;
-       Connection con;
-       ResultSet rs;
-       String Username = edtUsername.getText();
-       String Password = edtPass.getText();
-       String query = "select * from Cust_Info where Email_ID='"+Username+"' and Pass='"+Password+"'";
-        try{ 
+        PreparedStatement stm;
+        Connection con;
+        ResultSet rs;
+        String Username = edtUsername.getText();
+        String Password = edtPass.getText();
+        String query = "select * from Cust_Info where Email_ID='" + Username + "' and Pass='" + Password + "'";
+        try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con =DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
-             Statement stml =con.createStatement();
+            con = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
+            Statement stml = con.createStatement();
             rs = stml.executeQuery(query);
-            
-            if (rs.next())
-            {
-                new myprofile(Username,Password).setVisible(true);
+
+            if (rs.next()) {
+                new myprofile(Username, Password).setVisible(true);
                 //homepage.pack();
                 //homepage.setLocationRelativeTo(null);
                 this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
             }
-            else{
-                JOptionPane.showMessageDialog(null,"Incorrect Username or Password");
-            }
-                }catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-
-            this.dispose();
+        this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 

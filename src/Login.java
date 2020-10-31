@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author Vatsal
  */
 public class Login extends javax.swing.JFrame {
-
+public String pswdmatch="false";
     /**
      * Creates new form Login
      */
@@ -73,6 +73,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         jButton3.setText("Home");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("SIGN-UP");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -182,15 +187,21 @@ public class Login extends javax.swing.JFrame {
         ResultSet rs;
         String Username = edtUsername.getText();
         String Password = edtPass.getText();
+        
         String query = "select * from Cust_Info where Email_ID='" + Username + "' and Pass='" + Password + "'";
+        
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             con = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
             Statement stml = con.createStatement();
             rs = stml.executeQuery(query);
+            
+            pswdmatch="true";
 
             if (rs.next()) {
-                new myprofile(Username, Password).setVisible(true);
+                 String Name = rs.getString("First_Name");
+                 new myprofile(Username, Password).setVisible(false);
+                new Home_page(pswdmatch,Username, Password,Name).setVisible(true);
                 //homepage.pack();
                 //homepage.setLocationRelativeTo(null);
                 this.dispose();
@@ -211,6 +222,12 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       Home_page h = new Home_page();
+        h.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

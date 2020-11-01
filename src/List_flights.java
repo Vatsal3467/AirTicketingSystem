@@ -28,11 +28,14 @@ public class List_flights extends javax.swing.JFrame {
     public String date_month;
     public String date_num;
     public String pswdmatch="true";
-
+    public String username;
+    public String password;
+    public String usr_name;
+    public String open;
 
    
     
-    public List_flights(String val1, String val2,String val3,String val4)
+    public List_flights(String val1, String val2,String val3,String val4, String val5, String val6, String val7, String val8)
     {
          initComponents();
          
@@ -40,9 +43,12 @@ public class List_flights extends javax.swing.JFrame {
          
          this.str_fid=val1;
          this.f_arrival=val2;
-         
-          this.f_departure=val3;
-          this.datetime=val4;
+         this.f_departure=val3;
+         this.datetime=val4;
+         this.open=val5;
+         this.username=val6;
+         this.password=val7;
+         this.usr_name=val8;
           
          
          
@@ -138,7 +144,10 @@ public class List_flights extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setPreferredWidth(200);
         }
 
-        jButton2.setText("Back");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setText("BACK");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -153,35 +162,38 @@ public class List_flights extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 816, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(159, 159, 159)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)))
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87))
+                        .addGap(73, 73, 73)
+                        .addComponent(jButton2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton2)
-                        .addGap(59, 59, 59)))
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(59, 59, 59)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 dispose();
-                    new Home_page().setVisible(true);
+                    new Home_page(open,username,password,usr_name).setVisible(true);
+                    if(username.equals(null)){
+                        new Home_page().setVisible(true);
+                    }
                     
     }//GEN-LAST:event_jButton2ActionPerformed
 

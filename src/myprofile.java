@@ -45,7 +45,7 @@ public String ps_mtch;
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //sql driver
             con = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
-                            //Coonection string
+                            //Connection string
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -115,6 +115,7 @@ public String ps_mtch;
         SQ = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         email = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
 
         jLabel3.setText("jLabel2");
@@ -143,7 +144,7 @@ public String ps_mtch;
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 550, 105, 35));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 710, 105, 35));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setText("SIGN OUT");
@@ -155,52 +156,55 @@ public String ps_mtch;
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 50, -1, 35));
 
         jLabel2.setText("NAME");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 98, 28));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 98, 28));
 
         jLabel4.setText("AGE");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 98, 28));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 98, 28));
 
         jLabel5.setText("SEX");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 98, 28));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 98, 28));
 
         jLabel6.setText("EMAIL-ID");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 360, 98, 28));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 98, 28));
 
         jLabel7.setText("DATE OF BIRTH");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 98, 28));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 98, 28));
 
         jLabel8.setText("PASSWORD");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, 98, 28));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, 98, 28));
 
         name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameActionPerformed(evt);
             }
         });
-        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, 301, 28));
-        jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 410, 301, 28));
-        jPanel1.add(age, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 301, 28));
-        jPanel1.add(dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, 301, 28));
+        jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 301, 28));
+        jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 480, 301, 28));
+        jPanel1.add(age, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 301, 28));
+        jPanel1.add(dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 301, 28));
 
         sex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MALE", "FEMALE", "OTHER" }));
-        jPanel1.add(sex, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 84, -1));
+        jPanel1.add(sex, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 84, -1));
 
         jLabel9.setText("SECURITY QUESTION");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, -1, 28));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 550, -1, 28));
 
         jLabel10.setText("SECURITY ANSWER");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 490, 129, 28));
-        jPanel1.add(ans, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 490, 303, 28));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 610, 129, 28));
+        jPanel1.add(ans, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 610, 303, 28));
 
         SQ.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Which is your favourite color", "What is your favourite place" }));
-        jPanel1.add(SQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 460, 303, 21));
+        jPanel1.add(SQ, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 550, 303, 21));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel11.setText("MY PROFILE");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 234, 39));
 
         email.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 370, 290, 28));
+        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 410, 290, 28));
+
+        jLabel13.setText("@PIXABAY");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 120, -1, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpeg"))); // NOI18N
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1070, 710));
@@ -326,6 +330,7 @@ public String ps_mtch;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

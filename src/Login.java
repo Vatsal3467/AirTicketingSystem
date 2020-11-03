@@ -42,6 +42,7 @@ public String pswdmatch="false";
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         edtPass = new javax.swing.JPasswordField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -111,6 +112,9 @@ public String pswdmatch="false";
             }
         });
         jPanel1.add(edtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 249, 31));
+
+        jLabel5.setText("@PIXABAY");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 120, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpeg"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1070, 710));
@@ -255,6 +259,7 @@ public String pswdmatch="false";
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

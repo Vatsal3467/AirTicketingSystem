@@ -82,7 +82,7 @@ public class Home_page extends javax.swing.JFrame
     
     void Get_Arrival() //Create a class Arrival
     {
-        Connection conn; //decalring variable
+        Connection conn; //declaring variable
         ResultSet rs;//declaring variable
         
         jComboBox1.addItem("Select an arrival city");
@@ -201,6 +201,7 @@ public class Home_page extends javax.swing.JFrame
         jButton3 = new javax.swing.JButton();
         User_name1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -230,7 +231,7 @@ public class Home_page extends javax.swing.JFrame
             }
         });
         getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 229, 48));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, 198, 47));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 350, 198, 47));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("SEARCH");
@@ -239,7 +240,7 @@ public class Home_page extends javax.swing.JFrame
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 360, -1, 43));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 350, -1, 43));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Departure");
@@ -280,7 +281,10 @@ public class Home_page extends javax.swing.JFrame
         jLabel5.setFont(new java.awt.Font("DIN Condensed", 0, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 102, 255));
         jLabel5.setText("Flight Booking Service");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 350, 60));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 430, 60));
+
+        jLabel7.setText("@PIXABAY");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 120, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpeg"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1070, 750));
@@ -406,6 +410,7 @@ public class Home_page extends javax.swing.JFrame
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private java.awt.Label label2;
     // End of variables declaration//GEN-END:variables
 }

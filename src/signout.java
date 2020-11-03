@@ -9,7 +9,7 @@
  * @author aritrasmac
  */
 public class signout extends javax.swing.JFrame {
-
+// Public class with name same as file name is created.
     /**
      * Creates new form signout
      */
@@ -82,6 +82,7 @@ public class signout extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        dispose();
                     new Home_page().setVisible(true);
+                    // user directed to new home page upon clicking return to home page button.
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -115,6 +116,7 @@ public class signout extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new signout().setVisible(true);
+           // Redirecting user to new login .
             }
         });
     }

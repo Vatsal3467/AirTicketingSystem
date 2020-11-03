@@ -10,6 +10,7 @@ import javax.swing.*;
 
 public class Home_page extends javax.swing.JFrame 
 {
+    //Declare Variables
     String arrival_name, departure_name, traveldate;
     public int f_id;
     public String f_arrival;
@@ -27,8 +28,10 @@ public class Home_page extends javax.swing.JFrame
     public boolean isMatch = true;
     public String open;
     public String psw_match;
+    
     public Home_page() 
     {
+        //Call Home_page
         initComponents();
         Get_Arrival();
         Get_Departure();
@@ -38,25 +41,25 @@ public class Home_page extends javax.swing.JFrame
     }
  public Home_page(String A1,String B1,String C1,String D1) 
     {
-         
+         //Called Home_page as Constructor if login by user
         
         initComponents();
         Get_Arrival();
         Get_Departure();
        
-        this.open=A1;
-        this.username=B1;
-        this.password=C1;
-        this.usr_name=D1;
+        this.open=A1; //if login or not
+        this.username=B1; //getting username passed by login page
+        this.password=C1; //getting password passed by login page
+        this.usr_name=D1; //getting  id passed by login page
         
-        if (usr_name == null){
+        if (usr_name == null){//Set Title for User, If guest then will display Guest otherwise Name of user
          User_name1.setText("Hello, Guest!!");
-         jButton2.setText("SIGN IN");
+         jButton2.setText("SIGN IN"); //setting text for button Sign in
     }
-    else{
-    User_name1.setText("Hi, " + usr_name);
+    else{ //Display name of user
+    User_name1.setText("Hi, " + usr_name); //setting text for button hi, username
     jButton3.setEnabled(true);
-    jButton2.setText("MY PROFILE");
+    jButton2.setText("MY PROFILE"); //if login, Sign in will be chnaged to My profile and that window will be opened
     }
         
         
@@ -71,29 +74,29 @@ public class Home_page extends javax.swing.JFrame
         {
             public void run() 
             {
-                new Home_page().setVisible(true);
+                new Home_page().setVisible(true); //Opening Home_page by calling main method
                 
             }
         });
     }
     
-    void Get_Arrival() 
+    void Get_Arrival() //Create a class Arrival
     {
-        Connection conn;
-        ResultSet rs;
+        Connection conn; //decalring variable
+        ResultSet rs;//declaring variable
         
         jComboBox1.addItem("Select an arrival city");
         
-        try {
+        try { //Connection with the Azure SQL
          
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            conn = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //Connection driver
+            conn = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");//Connection string
             java.sql.Statement stat = conn.createStatement();
-            String SelectQuery = "SELECT a_name FROM dbo.Airport_Detail_List";
-            rs = stat.executeQuery(SelectQuery);
-            while (rs.next()) {
+            String SelectQuery = "SELECT a_name FROM dbo.Airport_Detail_List"; //Query Statement
+            rs = stat.executeQuery(SelectQuery);//Executing Query
+            while (rs.next()) {//Displaying results
                 String airport = rs.getString("a_name");       
-                jComboBox1.addItem(airport);                                 
+                jComboBox1.addItem(airport);   //Adding item to combobox                              
             }
       
         } catch (Exception e) 
@@ -104,7 +107,7 @@ public class Home_page extends javax.swing.JFrame
     }  
 
     
-    void Get_Departure() 
+    void Get_Departure() //Creating class for Departure
     {
         Connection conn;
         ResultSet rs;
@@ -112,7 +115,7 @@ public class Home_page extends javax.swing.JFrame
         jComboBox2.addItem("Select an departure city");
         
         try 
-        {
+        { //Connection with SQL server
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conn = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
             java.sql.Statement stat = conn.createStatement();
@@ -121,7 +124,7 @@ public class Home_page extends javax.swing.JFrame
             while (rs.next()) 
             {
                 String airport = rs.getString("a_name");
-                jComboBox2.addItem(airport);                        
+                jComboBox2.addItem(airport);        //Adding departure list to the combobox                
             }
         
         } catch (Exception e) 
@@ -130,9 +133,9 @@ public class Home_page extends javax.swing.JFrame
         }
     }
 
-    void Get_Date()
+    void Get_Date() //Creating class for getting dates
     {
-        java.sql.Date sqldate = new java.sql.Date(jDateChooser1.getDate().getTime());
+        java.sql.Date sqldate = new java.sql.Date(jDateChooser1.getDate().getTime()); //Used calender jar file to get date and time
         traveldate = sqldate.toString();
     }
      
@@ -144,18 +147,18 @@ public class Home_page extends javax.swing.JFrame
             
     
     
-    void Search_Flights() 
+    void Search_Flights() //Create class Search Flight
     {  
-        Get_Date();
+        Get_Date(); //getting date
         try 
-        {
+        { //Creating connection with SQL database
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection conn = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
             Statement uml = conn.createStatement();
             String sql = "SELECT f_id, f_arrival, f_departure, f_datetime FROM Flight_Detail a where a.f_arrival = '" + arrival_name + "' and a.f_departure = '" + departure_name + "' and a.f_datetime = '" + traveldate + "'";
     
-            ResultSet rs = uml.executeQuery(sql);
-            while(rs.next())
+            ResultSet rs = uml.executeQuery(sql); //Executing Query
+            while(rs.next()) //results of execution
             {
                 f_id = rs.getInt("f_id");
                 f_arrival = rs.getString("f_arrival");
@@ -165,7 +168,7 @@ public class Home_page extends javax.swing.JFrame
             }
             conn.close();
             
-            if(f_departure.equals(f_arrival) && datetime.equalsIgnoreCase(traveldate))
+            if(f_departure.equals(f_arrival) && datetime.equalsIgnoreCase(traveldate)) //Condition of Arrival and Departure if both are equal
             {
                 isMatch = false;
             } 
@@ -292,11 +295,11 @@ public class Home_page extends javax.swing.JFrame
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
        
-        arrival_name = jComboBox1.getSelectedItem().toString();
+        arrival_name = jComboBox1.getSelectedItem().toString(); //Setting items from Departure into Combobox
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        departure_name = jComboBox2.getSelectedItem().toString();
+        departure_name = jComboBox2.getSelectedItem().toString(); //Setting items from Arrival to combobox
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
@@ -304,30 +307,27 @@ public class Home_page extends javax.swing.JFrame
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jButton1.addActionListener(new ActionListener() 
-        {
-            public void actionPerformed(ActionEvent e) 
-            {   
-                Search_Flights();
+          
+                Search_Flights(); //Calling Search class
                 
                         
-                if((validate == true) && (isMatch = true))
+                if((validate == true) && (isMatch = true)) //if arrival and departure are different
                 {
-                    try{Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                    try{Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //Connect with SQL database to get results
             Connection conn = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
             Statement uml = conn.createStatement();
             String sql = "SELECT f_id, f_arrival, f_departure, f_datetime,Price FROM Flight_Detail a where a.f_arrival = '" + arrival_name + "' and a.f_departure = '" + departure_name + "' and a.f_datetime = '" + traveldate + "'";
-    
-            ResultSet rs = uml.executeQuery(sql);
+                                //Query Statement
+            ResultSet rs = uml.executeQuery(sql); //Results execution
             if(rs.next())
-            {
-                f_id = rs.getInt("f_id");
-                flightprice=rs.getInt("Price");
-                f_arrival = rs.getString("f_arrival");
-                f_departure = rs.getString("f_departure");
-                datetime = rs.getString("f_datetime");
-                str_fid=Integer.toString(f_id);
-                Flight_price=Integer.toString(flightprice);
+            { //Getting results from the databse
+                f_id = rs.getInt("f_id"); //getting flight id
+                flightprice=rs.getInt("Price");//getting flight price
+                f_arrival = rs.getString("f_arrival");//getting flight arrival
+                f_departure = rs.getString("f_departure");//getting flight departure
+                datetime = rs.getString("f_datetime");//getting date
+                str_fid=Integer.toString(f_id);//converting flight id to string
+                Flight_price=Integer.toString(flightprice);//converting flight price to string
                 
                 
                 
@@ -336,62 +336,60 @@ public class Home_page extends javax.swing.JFrame
                     catch(Exception E){
                     
                     }
-                    dispose();
+                     //if true and button is pressed, then List_flight will open and below listed 8 variables will be passed to other frame
                     new List_flights(str_fid,f_arrival,f_departure,datetime,open,username,password,usr_name,Flight_price).setVisible(true);
+                    dispose(); //this will be closed
                 }
                 else
                 {                  
-                    dispose();
-                    new Home_page().setVisible(true);
-                    String message = "Enter a valid combination!";
+                    String message = "Enter a valid combination!"; //A dialog box will open displaying no valid combinations
                     JOptionPane.showMessageDialog(new ErrorDialogueBox(), message, "Invalid!", JOptionPane.ERROR_MESSAGE);
                     
                     initComponents();
                     Get_Arrival();
                     Get_Departure();                 
                 }
-            }
-        });
+            
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-jButton2.addActionListener(new ActionListener() 
-         
-        {
-            public void actionPerformed(ActionEvent e) 
-            {   
-                
+
+                //If this button is pressed then Login page will open
                         
                 if(null == open )
                 {
-                    dispose();
+                    
                     new Login().setVisible(true);
+                    dispose(); //this will close
                 }
                 
                 
                 else switch (open) {
                     case "true" -> {
-                        dispose();
-                        new myprofile(username,password).setVisible(true);
+                       
+                        new myprofile(username,password).setVisible(true); //If already login, My profile page will open
+                         dispose(); //this will close
                         //goto profile
                     }
                     case "false" -> {
-                        dispose();
-                        new Login().setVisible(true);
+                        
+                        new Login().setVisible(true); //if not login, login page will open
+                        dispose(); //this will close
                     }
-                    default -> {
-                        dispose();
+                    default -> { //by default
+                     
                         new Login().setVisible(true);
+                        dispose(); //this will close
                     }
                 }
-            }
-        });
+            
          
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new signout().setVisible(true);
-        dispose();
+        new signout().setVisible(true); //this button signots the user, if they rae login, by default it is disabled 
+        dispose();// this page will close
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

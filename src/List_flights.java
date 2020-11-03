@@ -189,11 +189,15 @@ public class List_flights extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-                    new Home_page(open,username,password,usr_name).setVisible(true); //Clicking back button opens home page with login details to set username on title
-                    this.dispose(); //this will be closed
-                    if(username.equals(null)){ //if login is not done, Hello, Guest will be displayed
+                    
+                     //this will be closed
+                    if(username == null){ //if login is not done, Hello, Guest will be displayed
                         new Home_page().setVisible(true); //this homepage constructor will open
-                  
+                  this.dispose();
+                    }
+                    else{
+                        new Home_page(open,username,password,usr_name).setVisible(true); //Clicking back button opens home page with login details to set username on title
+                        this.dispose();
                     }
                     
                     

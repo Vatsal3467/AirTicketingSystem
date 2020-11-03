@@ -4,10 +4,7 @@
  * and open the template in the editor.
  */
 
-/**
- *
- * @author Rishav
- */
+
 public class ErrorDialogueBox extends javax.swing.JFrame {
 
     /**

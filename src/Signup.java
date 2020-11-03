@@ -37,7 +37,7 @@ public class Signup extends javax.swing.JFrame {
         }
 
     }
-// Connecting the java with MySQL database using drivers so that the data is stored into the table.
+// Connecting the java with Azure microsoft SQL database using drivers so that the data is stored into the table.
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,6 +72,7 @@ public class Signup extends javax.swing.JFrame {
         email = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,19 +86,19 @@ public class Signup extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, -1, 61));
 
         jLabel2.setText("NAME");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 101, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 101, 30));
 
         jLabel3.setText("AGE");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 101, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 101, 30));
 
         jLabel4.setText("DATE OF BIRTH");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 101, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 101, 30));
 
         jLabel5.setText("EMAIL-ID");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 101, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 101, 30));
 
         jLabel6.setText("PASSWORD");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 101, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 101, 30));
 
         jLabel7.setText("CONFIRM PASSWORD");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, 150, 30));
@@ -106,17 +107,17 @@ public class Signup extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, 140, 30));
 
         jLabel9.setText("SEX");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 101, 30));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 101, 30));
 
         jLabel10.setText("ANSWER");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 101, 30));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, 101, 30));
 
         age.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ageActionPerformed(evt);
             }
         });
-        jPanel1.add(age, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 335, -1));
+        jPanel1.add(age, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 335, -1));
 
         name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +125,7 @@ public class Signup extends javax.swing.JFrame {
             }
         });
         jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 335, -1));
-        jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 335, -1));
+        jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 335, -1));
 
         passcon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,7 +154,7 @@ public class Signup extends javax.swing.JFrame {
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 550, 103, 37));
 
         sex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
-        jPanel1.add(sex, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, -1, -1));
+        jPanel1.add(sex, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, -1, -1));
 
         sq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What is your favorite color", "Which is your favorite place", "What is your first school name", "what is your mother name" }));
         jPanel1.add(sq, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, 335, -1));
@@ -178,8 +179,8 @@ public class Signup extends javax.swing.JFrame {
                 dobActionPerformed(evt);
             }
         });
-        jPanel1.add(dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 335, -1));
-        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 335, 24));
+        jPanel1.add(dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 335, -1));
+        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 335, 20));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("HOME");
@@ -198,6 +199,9 @@ public class Signup extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 20, -1, 40));
+
+        jLabel12.setText("@PIXABAY");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 100, -1, -1));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpeg"))); // NOI18N
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1070, 760));
@@ -262,7 +266,7 @@ public class Signup extends javax.swing.JFrame {
                     stm.setString(8, Answer);
                     int s = stm.executeUpdate();
                     /* 
-                    Inserting the detail entered by the user in Cust_Info table in MySQL in same order Name,Age
+                    Inserting the detail entered by the user in Cust_Info table in Microsoft Azure SQL in same order Name,Age
                     Email ID, SEX, Date of Birth, Password,security question ,security answer.
                             */
                     if (s == 1) {
@@ -373,6 +377,7 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

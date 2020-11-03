@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+// Importing necessary libraries for executing the operation.
 /**
  *
  * @author Vatsal
@@ -147,7 +148,7 @@ public String pswdmatch="false";
     }//GEN-LAST:event_edtUsernameActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+// Creating a new signup page when signup button is pressed.
         Signup s = new Signup();
         s.setVisible(true);
         this.dispose();
@@ -156,15 +157,15 @@ public String pswdmatch="false";
 //Connection con;
 //PreparedStatement stm;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+// When sign in button is selected following set of events occur.
         PreparedStatement stm;
         Connection con;
         ResultSet rs;
         String Username = edtUsername.getText();
         String Password = edtPass.getText();
-        
+ // Getting username and password from the user using getText method.       
         String query = "select * from Cust_Info where Email_ID='" + Username + "' and Pass='" + Password + "'";
-        
+ // Selecting everything from the cust_info table where email ID field equal to one entered and password is equal to entered.       
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             con = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
@@ -182,8 +183,11 @@ public String pswdmatch="false";
                 //homepage.setLocationRelativeTo(null);
                 this.dispose();
             } else {
+            
                 JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
+                // A dialogue box is opened showing incorrect username and password when username doesnot match with password. 
             }
+            
         } catch (SQLException ex) {
             Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

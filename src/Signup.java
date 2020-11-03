@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
+// Importing all the necessary libraries for operation.
 /**
  *
  * @author Vatsal
@@ -37,7 +37,7 @@ public class Signup extends javax.swing.JFrame {
         }
 
     }
-
+// Connecting the java with MySQL database using drivers so that the data is stored into the table.
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -239,9 +239,16 @@ public class Signup extends javax.swing.JFrame {
         String Passcon = passcon.getText();
         String SQ = sq.getSelectedItem().toString();
         String Answer = answer.getText();
+        /*
+        Getting fields like name,age,emailID,sex, date of birth,password,security question and answer 
+        using getText method. In case of drop down box fields like Sex and Security question the selected field 
+        gets converted to string.
+        */
         if (Email.contains("@")) {
+            // The email field should contain @ sign for vaid entry.
 
             if (Pass.equals(Passcon) && Pass.length() >= 5) {
+                // Password length should be more than 5 characters as a part of security feature.
 
                 try {
                     stm = con.prepareStatement("INSERT INTO Cust_Info(First_Name,Age,Email_ID,Sex,DOB,Pass,SQ,Answer)values(?,?,?,?,?,?,?,?)");
@@ -254,7 +261,10 @@ public class Signup extends javax.swing.JFrame {
                     stm.setString(7, SQ);
                     stm.setString(8, Answer);
                     int s = stm.executeUpdate();
-
+                    /* 
+                    Inserting the detail entered by the user in Cust_Info table in MySQL in same order Name,Age
+                    Email ID, SEX, Date of Birth, Password,security question ,security answer.
+                            */
                     if (s == 1) {
                         JOptionPane.showMessageDialog(this, "Account Created Successfully");
 
@@ -272,16 +282,18 @@ public class Signup extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(this, "Account Not Created");
                     }
-
+// If the details are stored into MySQL table than account is created successfully.else account is not created.
                     // TODO add your handling code here:
                 } catch (SQLException ex) {
                     Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Password Does not match or The Password is too Small");
+                // If entered password is less than 5 characters error is displayed .
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please Enter valid Email Address");
+            // If the entered Email ID doesnot contain @ sign error is displayed indicating invalid email ID.
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 

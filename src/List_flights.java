@@ -12,14 +12,14 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public class List_flights extends javax.swing.JFrame {
-
+//Import packages
     /**
      * Creates new form test
      */
-    public List_flights() {
+    public List_flights() { //constructor for list flight
         initComponents();
         setResizable(false);
-    }
+    } //Declaring public variables
     public String f_arrival;
     public String f_departure;
     public String datetime;
@@ -38,20 +38,20 @@ public class List_flights extends javax.swing.JFrame {
    
     
     public List_flights(String val1, String val2,String val3,String val4, String val5, String val6, String val7, String val8,String val9)
-    {
+    { //Constructor for list_Flight with variables
          initComponents();
          
          
          
-         this.str_fid=val1;
-         this.f_arrival=val2;
-         this.f_departure=val3;
-         this.datetime=val4;
-         this.open=val5;
-         this.username=val6;
-         this.password=val7;
-         this.usr_name=val8;
-         this.Price=val9;
+         this.str_fid=val1; //Flight id passed by Homepage
+         this.f_arrival=val2; //Arrival detailes passed by homepage
+         this.f_departure=val3;//Departure detailes passed by homapge
+         this.datetime=val4; //Date passed by Homepage
+         this.open=val5; //Login passed by homepage
+         this.username=val6;//Username passed by homepage
+         this.password=val7;//password passed by homepage
+         this.usr_name=val8;//id passed by homepage
+         this.Price=val9;//price passed by homepage
           
          
          
@@ -61,13 +61,13 @@ public class List_flights extends javax.swing.JFrame {
     
     
     
-     public void Addvaluestotable(){
+     public void Addvaluestotable(){ //Making class Adding values to table
         DefaultTableModel dt=(DefaultTableModel) jTable1.getModel();
         
-        Vector v= new Vector();
+        Vector v= new Vector(); //getting a vector
         String str_date[]=datetime.split("-");
         switch (str_date[1]) {
-            case "01" -> date_month="January" ;
+            case "01" -> date_month="January" ; //giving numbers to string
             case "02" -> date_month="february";
             case "03" -> date_month="March";
             case "04" -> date_month="April";
@@ -82,7 +82,7 @@ public class List_flights extends javax.swing.JFrame {
             default -> {
             }
         }
-         date_num = switch (str_date[2]) {
+         date_num = switch (str_date[2]) { //Using switch statement to get different states
             case "01" -> "st";
             case "02" -> "nd";
             case "03" -> "rd";
@@ -95,17 +95,17 @@ public class List_flights extends javax.swing.JFrame {
         
                 
          
-        str_dateprint=(str_date[2]+date_num+" "+date_month+" "+str_date[0]);
+        str_dateprint=(str_date[2]+date_num+" "+date_month+" "+str_date[0]); //Developing string for adding a values to table
         
-        v.add(str_fid);
-        v.add(f_arrival);
-        v.add(f_departure);
-        v.add(str_dateprint);
-        v.add(Price);
+        v.add(str_fid); //Adding Flight id to table
+        v.add(f_arrival);//Adding arrival to table
+        v.add(f_departure);//adding departure to table
+        v.add(str_dateprint);//adding date to table
+        v.add(Price);//adding price to table
         
-        dt.addRow(v);
+        dt.addRow(v); //another row after adding
         
-        jLabel1.setText("List of available flights on "+str_date[2]+date_num+" "+date_month+" "+str_date[0]);
+        jLabel1.setText("List of available flights on "+str_date[2]+date_num+" "+date_month+" "+str_date[0]); //setting text above for what flight is being searched
     }
 
     /**
@@ -184,11 +184,13 @@ public class List_flights extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-dispose();
-                    new Home_page(open,username,password,usr_name).setVisible(true);
-                    if(username.equals(null)){
-                        new Home_page().setVisible(true);
+
+                    new Home_page(open,username,password,usr_name).setVisible(true); //Clicking back button opens home page with login details to set username on title
+                    if(username.equals(null)){ //if login is not done, Hello, Guest will be displayed
+                        new Home_page().setVisible(true); //this homepage constructor will open
+                  
                     }
+                    dispose(); //this will be closed
                     
     }//GEN-LAST:event_jButton2ActionPerformed
 

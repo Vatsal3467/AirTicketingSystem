@@ -18,34 +18,34 @@ public String ps_mtch;
     /**
      * Creates new form myprofile
      */
-    public myprofile() {
+    public myprofile() { //Calling a Constructor of myprofile           
         initComponents();
-        Connect();
+        Connect(); //Calling Connection with sql
         setResizable(false);
 
     }
 
-    public myprofile(String mail, String password) {
+    public myprofile(String mail, String password) { //calling constructor with login detailes 
       
         initComponents();
         
-        Connect();
+        Connect();//conncetion with the sql     
         try {
-            display(mail, password);
+            display(mail, password); //Calling a display method and passing variable to display
         } catch (SQLException ex) {
             Logger.getLogger(myprofile.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-    Connection con;
-    PreparedStatement stm;
-    ResultSet result;
+    Connection con; //varibale
+    PreparedStatement stm;// variable
+    ResultSet result;//variable
 
-    public void Connect() {
+    public void Connect() { //class connect which develops connection with sql databes  
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //sql driver
             con = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
-
+                            //Coonection string
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -54,35 +54,32 @@ public String ps_mtch;
 
     }
 
-    public void display(String mail, String password) throws SQLException {
+    public void display(String mail, String password) throws SQLException { //Display class
 
-        String query = "Select * from Cust_Info where Email_ID='" + mail + "' and Pass ='" + password + "'";
+        String query = "Select * from Cust_Info where Email_ID='" + mail + "' and Pass ='" + password + "'"; //Connection string
         try {
-            Statement stm = con.createStatement();
-            result = stm.executeQuery(query);
+            Statement stm = con.createStatement(); 
+            result = stm.executeQuery(query);//Executing query
         } catch (SQLException ex) {
             Logger.getLogger(myprofile.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        if (result.next()) {
-            String Name = result.getString("First_Name");
-            String Age = result.getString("Age");
-            String emailid = result.getString("Email_ID");
-            String Dob = result.getString("DOB");
-            String Pass = result.getString("Pass");
-            String Ans = result.getString("Answer");
-            //String lastName = rs.getString("last_name");
-            //Date dateCreated = rs.getDate("date_created");
-            //boolean isAdmin = rs.getBoolean("is_admin");
-            //int numPoints = rs.getInt("num_points");
-            String Title = "Hi, " + Name;
-            name.setText(Name);
-            age.setText(Age);
-            dob.setText(Dob);
-            email.setText(emailid);
-            pass.setText(Pass);
-            ans.setText(Ans);
-            title.setText(Title);
+        if (result.next()) { //GEtting results from the sql after execution of query
+            String Name = result.getString("First_Name"); //Getting first name and storing into variable
+            String Age = result.getString("Age"); //getiing age
+            String emailid = result.getString("Email_ID");//getting email id
+            String Dob = result.getString("DOB");//getting dob
+            String Pass = result.getString("Pass");//getting password
+            String Ans = result.getString("Answer");//getting answer
+         
+            String Title = "Hi, " + Name; //Giving title with the username
+            name.setText(Name); //setting values into txt field
+            age.setText(Age); //setting age
+            dob.setText(Dob);//setting dob
+            email.setText(emailid);//setting email id
+            pass.setText(Pass);//setting password
+            ans.setText(Ans);//setting answer
+            title.setText(Title);//setting title 
         }
     }
 
@@ -230,26 +227,26 @@ public String ps_mtch;
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        String Name = name.getText();
-        String Age = age.getText();
-        String Dob = dob.getText();
-        String Email = email.getText();
-        String Pass = pass.getText();
-        String Ans = ans.getText();
+        String Name = name.getText(); //getting name
+        String Age = age.getText();//getting age
+        String Dob = dob.getText();//getting dob
+        String Email = email.getText(); //getting emailid
+        String Pass = pass.getText();//getting password
+        String Ans = ans.getText();//getting answer
 
         try {
-            stm = con.prepareStatement("UPDATE Cust_Info SET First_Name = ?, Age = ?, DOB = ?, Pass = ?, Answer = ? WHERE Email_ID = ?");
-            stm.setString(1, Name);
-            stm.setString(2, Age);
-            stm.setString(3, Dob);
+            stm = con.prepareStatement("UPDATE Cust_Info SET First_Name = ?, Age = ?, DOB = ?, Pass = ?, Answer = ? WHERE Email_ID = ?"); //string query
+            stm.setString(1, Name);//passing variable to query
+            stm.setString(2, Age);//passing variable to query
+            stm.setString(3, Dob);//passing variable to query
 
-            stm.setString(4, Pass);
-            stm.setString(5, Ans);
-            stm.setString(6, Email);
-            int s = stm.executeUpdate();
+            stm.setString(4, Pass);//passing variable to query
+            stm.setString(5, Ans);//passing variable to query
+            stm.setString(6, Email);//passing variable to query
+            int s = stm.executeUpdate(); //Executing query status
 
             if (s == 1) {
-                JOptionPane.showMessageDialog(this, "Account Updated Successfully");
+                JOptionPane.showMessageDialog(this, "Account Updated Successfully"); //if executed successfully, dialog box will open
 
             } else {
                 JOptionPane.showMessageDialog(this, "Account Not Updated");
@@ -262,13 +259,13 @@ public String ps_mtch;
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String username=email.getText();
-        String password=pass.getText();
-        String condition="true";
-        String Name=name.getText();
+        String username=email.getText(); //getting username
+        String password=pass.getText();//getting password
+        String condition="true";//getting condition
+        String Name=name.getText();//getting name
         
-        new Home_page(condition,username,password,Name).setVisible(true);
-        dispose();
+        new Home_page(condition,username,password,Name).setVisible(true); //open homepage with the name
+        dispose();//this is closed
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
@@ -276,8 +273,10 @@ public String ps_mtch;
     }//GEN-LAST:event_nameActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-dispose();
-                    new signout().setVisible(true);        // TODO add your handling code here:
+
+                    new signout().setVisible(true); //signout
+                       dispose(); //this is dispose
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

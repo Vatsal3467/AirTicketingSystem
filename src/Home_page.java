@@ -171,6 +171,7 @@ public class Home_page extends javax.swing.JFrame
             if(f_departure.equals(f_arrival) && datetime.equalsIgnoreCase(traveldate)) //Condition of Arrival and Departure if both are equal
             {
                 isMatch = false;
+                new Home_page().setVisible(true);
             } 
             else
             {
@@ -200,6 +201,7 @@ public class Home_page extends javax.swing.JFrame
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         User_name1 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -278,6 +280,15 @@ public class Home_page extends javax.swing.JFrame
         User_name1.setText("Hello, Guest!!!");
         getContentPane().add(User_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 435, -1));
 
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton4.setText("EXIT APPLICATION");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 570, 200, 43));
+
         jLabel5.setFont(new java.awt.Font("DIN Condensed", 0, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 102, 255));
         jLabel5.setText("Flight Booking Service");
@@ -311,7 +322,7 @@ public class Home_page extends javax.swing.JFrame
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-          
+         
                 Search_Flights(); //Calling Search class
                 
                         
@@ -349,9 +360,7 @@ public class Home_page extends javax.swing.JFrame
                     String message = "Enter a valid combination!"; //A dialog box will open displaying no valid combinations
                     JOptionPane.showMessageDialog(new ErrorDialogueBox(), message, "Invalid!", JOptionPane.ERROR_MESSAGE);
                     
-                    initComponents();
-                    Get_Arrival();
-                    Get_Departure();                 
+                    
                 }
             
        
@@ -360,7 +369,7 @@ public class Home_page extends javax.swing.JFrame
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
                 //If this button is pressed then Login page will open
-                        
+                 
                 if(null == open )
                 {
                     
@@ -387,7 +396,7 @@ public class Home_page extends javax.swing.JFrame
                         dispose(); //this will close
                     }
                 }
-            
+           
          
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -396,11 +405,16 @@ public class Home_page extends javax.swing.JFrame
         dispose();// this page will close
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+            this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel User_name1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;

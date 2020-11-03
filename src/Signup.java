@@ -67,7 +67,6 @@ public class Signup extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         sex = new javax.swing.JComboBox<>();
         sq = new javax.swing.JComboBox<>();
-        jButton5 = new javax.swing.JButton();
         dob = new javax.swing.JFormattedTextField();
         email = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
@@ -142,7 +141,7 @@ public class Signup extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 550, 103, 37));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 550, 103, 37));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setText("SUBMIT");
@@ -158,15 +157,6 @@ public class Signup extends javax.swing.JFrame {
 
         sq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What is your favorite color", "Which is your favorite place", "What is your first school name", "what is your mother name" }));
         jPanel1.add(sq, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, 335, -1));
-
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton5.setText("CANCEL");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 550, 103, 37));
 
         dob.setColumns(10);
         try {
@@ -226,12 +216,6 @@ public class Signup extends javax.swing.JFrame {
     private void dobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dobActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        this.dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         String Name = name.getText();
@@ -372,7 +356,6 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

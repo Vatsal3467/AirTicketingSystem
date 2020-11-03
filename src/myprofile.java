@@ -128,7 +128,7 @@ public String ps_mtch;
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jPanel1.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 6, 397, 36));
+        jPanel1.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 397, 36));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("BACK");

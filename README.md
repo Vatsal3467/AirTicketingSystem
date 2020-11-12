@@ -2,4 +2,6 @@ This is the project for software engineering developing Air ticketing system in 
 
 The project is developed in the Netbeans 12.1 IDE using java development kit 14. JFrame is used to implement the project. 
 
-To run the project, make sure that "mssql-jdbc" .jar files, which is driver for sql connection with java are added to library. Also, "jcalendar-1.4.jar" must be added to the project library. If these files are not added automatically, it can be found in the main AirTicketingSystem folder. Add them from that path and then run project.
+To run the project, make sure that "MySQL-jdbc" .jar files, which is driver for sql connection with java are added to library. Also, "jcalendar-1.4.jar" must be added to the project library. If these files are not added automatically, it can be found in the main AirTicketingSystem folder. Add them from that path and then run project.
+
+Also, run sql files which are added in the folder. these files are to create table in the local server.

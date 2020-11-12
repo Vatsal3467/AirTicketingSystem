@@ -89,12 +89,12 @@ public class Home_page extends javax.swing.JFrame
         
         try { //Connection with the Azure SQL
          
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //Connection driver
-            conn = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");//Connection string
+            Class.forName("com.mysql.cj.jdbc.Driver"); //Connection driver
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/my","root","Vatsal@123");//Connection string
             java.sql.Statement stat = conn.createStatement();
-            String SelectQuery = "SELECT a_name FROM dbo.Airport_Detail_List"; //Query Statement
+            String SelectQuery = "SELECT a_name FROM air_name "; //Query Statement
             rs = stat.executeQuery(SelectQuery);//Executing Query
-            while (rs.next()) {//Displaying results
+            while (rs.next()) {//Displaying results 
                 String airport = rs.getString("a_name");       
                 jComboBox1.addItem(airport);   //Adding item to combobox                              
             }
@@ -116,10 +116,10 @@ public class Home_page extends javax.swing.JFrame
         
         try 
         { //Connection with SQL server
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            conn = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/my","root","Vatsal@123");
             java.sql.Statement stat = conn.createStatement();
-            String SelectQuery = "SELECT a_name FROM dbo.Airport_Detail_List";
+            String SelectQuery = "SELECT a_name FROM air_name";
             rs = stat.executeQuery(SelectQuery);
             while (rs.next()) 
             {
@@ -152,8 +152,8 @@ public class Home_page extends javax.swing.JFrame
         Get_Date(); //getting date
         try 
         { //Creating connection with SQL database
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Connection conn = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/my","root","Vatsal@123");
             Statement uml = conn.createStatement();
             String sql = "SELECT f_id, f_arrival, f_departure, f_datetime FROM Flight_Detail a where a.f_arrival = '" + arrival_name + "' and a.f_departure = '" + departure_name + "' and a.f_datetime = '" + traveldate + "'";
     
@@ -171,7 +171,7 @@ public class Home_page extends javax.swing.JFrame
             if(f_departure.equals(f_arrival) && datetime.equalsIgnoreCase(traveldate)) //Condition of Arrival and Departure if both are equal
             {
                 isMatch = false;
-                new Home_page().setVisible(true);
+                
             } 
             else
             {
@@ -328,31 +328,11 @@ public class Home_page extends javax.swing.JFrame
                         
                 if((validate == true) && (isMatch = true)) //if arrival and departure are different
                 {
-                    try{Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //Connect with SQL database to get results
-            Connection conn = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
-            Statement uml = conn.createStatement();
-            String sql = "SELECT f_id, f_arrival, f_departure, f_datetime,Price FROM Flight_Detail a where a.f_arrival = '" + arrival_name + "' and a.f_departure = '" + departure_name + "' and a.f_datetime = '" + traveldate + "'";
-                                //Query Statement
-            ResultSet rs = uml.executeQuery(sql); //Results execution
-            if(rs.next())
-            { //Getting results from the databse
-                f_id = rs.getInt("f_id"); //getting flight id
-                flightprice=rs.getInt("Price");//getting flight price
-                f_arrival = rs.getString("f_arrival");//getting flight arrival
-                f_departure = rs.getString("f_departure");//getting flight departure
-                datetime = rs.getString("f_datetime");//getting date
-                str_fid=Integer.toString(f_id);//converting flight id to string
-                Flight_price=Integer.toString(flightprice);//converting flight price to string
-                
-                
-                
-            }
-                    }   
-                    catch(Exception E){
-                    
+                    try {
+                        new List_flights(arrival_name,departure_name,traveldate,open,username,password,usr_name,Flight_price).setVisible(true);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(Home_page.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                     //if true and button is pressed, then List_flight will open and below listed 8 variables will be passed to other frame
-                    new List_flights(str_fid,f_arrival,f_departure,datetime,open,username,password,usr_name,Flight_price).setVisible(true);
                     dispose(); //this will be closed
                 }
                 else

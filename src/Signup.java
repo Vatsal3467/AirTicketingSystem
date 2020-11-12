@@ -27,8 +27,8 @@ public class Signup extends javax.swing.JFrame {
 
     public void Connect() {
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/my","root","Vatsal@123");
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
@@ -61,17 +61,26 @@ public class Signup extends javax.swing.JFrame {
         age = new javax.swing.JTextField();
         name = new javax.swing.JTextField();
         pass = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         passcon = new javax.swing.JTextField();
         answer = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         sex = new javax.swing.JComboBox<>();
         sq = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
         dob = new javax.swing.JFormattedTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -126,6 +135,9 @@ public class Signup extends javax.swing.JFrame {
         jPanel1.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 335, -1));
         jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 335, -1));
 
+        jLabel12.setText("@PIXABAY");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 100, -1, -1));
+
         passcon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passconActionPerformed(evt);
@@ -133,6 +145,14 @@ public class Signup extends javax.swing.JFrame {
         });
         jPanel1.add(passcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 335, -1));
         jPanel1.add(answer, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 450, 335, -1));
+
+        jLabel18.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel18.setText("Give your Answer");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 450, 160, -1));
+
+        jLabel19.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel19.setText("Enter your name");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 120, 130, -1));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("CLEAR");
@@ -158,6 +178,10 @@ public class Signup extends javax.swing.JFrame {
         sq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What is your favorite color", "Which is your favorite place", "What is your first school name", "what is your mother name" }));
         jPanel1.add(sq, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, 335, -1));
 
+        jLabel20.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel20.setText("Enter your Age, Integer only");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 160, 200, -1));
+
         dob.setColumns(10);
         try {
             dob.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
@@ -170,6 +194,30 @@ public class Signup extends javax.swing.JFrame {
             }
         });
         jPanel1.add(dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 335, -1));
+
+        jLabel21.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel21.setText("Enter Your E-mail ID");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 200, 160, -1));
+
+        jLabel22.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel22.setText("Select your sex");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 80, -1));
+
+        jLabel23.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel23.setText("YYYY-MM-DD Format");
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 280, 120, -1));
+
+        jLabel24.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel24.setText("Enter Atleast 5 characters");
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 320, 130, -1));
+
+        jLabel25.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel25.setText("Enter same password as above");
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 370, 180, -1));
+
+        jLabel26.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel26.setText("Select your Security Question ");
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 410, 160, -1));
         jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 335, 20));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -190,9 +238,6 @@ public class Signup extends javax.swing.JFrame {
         });
         jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 20, -1, 40));
 
-        jLabel12.setText("@PIXABAY");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 100, -1, -1));
-
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpeg"))); // NOI18N
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1070, 760));
 
@@ -203,7 +248,9 @@ public class Signup extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        new Login().setVisible(true);
+        dispose();
+
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -277,10 +324,15 @@ public class Signup extends javax.swing.JFrame {
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Password Does not match or The Password is too Small");
+                pass.setText("");
+                passcon.setText("");
+                pass.requestFocus();
                 // If entered password is less than 5 characters error is displayed .
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please Enter valid Email Address");
+            email.setText("");
+            email.requestFocus();
             // If the entered Email ID doesnot contain @ sign error is displayed indicating invalid email ID.
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -306,7 +358,7 @@ public class Signup extends javax.swing.JFrame {
     }//GEN-LAST:event_passconActionPerformed
 
     private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
-        // TODO add your handling code here:
+                      // TODO add your handling code here:
     }//GEN-LAST:event_nameActionPerformed
 
     private void ageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageActionPerformed
@@ -361,7 +413,16 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

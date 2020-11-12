@@ -171,8 +171,8 @@ public String pswdmatch="false";
         String query = "select * from Cust_Info where Email_ID='" + Username + "' and Pass='" + Password + "'";
  // Selecting everything from the cust_info table where email ID field equal to one entered and password is equal to entered.       
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/my","root","Vatsal@123");
             Statement stml = con.createStatement();
             rs = stml.executeQuery(query);
             

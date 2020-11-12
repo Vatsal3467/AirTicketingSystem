@@ -43,8 +43,8 @@ public String ps_mtch;
 
     public void Connect() { //class connect which develops connection with sql databes  
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //sql driver
-            con = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30");
+            Class.forName("com.mysql.cj.jdbc.Driver"); //sql driver
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/my","root","Vatsal@123");
                             //Connection string
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);

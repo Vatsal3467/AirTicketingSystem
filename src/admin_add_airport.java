@@ -75,7 +75,7 @@ public String admin;//decare public variable admin
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, 140, 60));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 20, 140, 60));
 
         jLabel7.setText("@PIXABAY");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 120, -1, -1));
@@ -108,7 +108,7 @@ public String admin;//decare public variable admin
         jLabel5.setFont(new java.awt.Font("DIN Condensed", 0, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 102, 255));
         jLabel5.setText("Flight Booking Service");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 430, 60));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 430, 60));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/white.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -126,31 +126,42 @@ public String admin;//decare public variable admin
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      try { //Connection with the Azure SQL
+
+        try { //Connection with the Azure SQL
           Connection conn; //declaring variable
-        ResultSet rs;
-        String inputairport=jTextField1.getText();//getting text
+            ResultSet rs;
+            String inputairport=jTextField1.getText();//getting text
+
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //Connection driver
             conn = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem01.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem01;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");//Connection string
             java.sql.Statement stat = conn.createStatement();//create statement
             String SelectQuery = "SELECT a_name FROM flight_booking.air_name where a_name='"+inputairport+"'"; //Query Statement
             rs = stat.executeQuery(SelectQuery);//Executing Query
+            
             if (rs.next()) {//if airport is already present display error message
                 String message = "An airport with this name already exists.Please try again with another Name"; //A dialog box will open displaying no valid combinations
                 JOptionPane.showMessageDialog(new ErrorDialogueBox(), message, "Invalid!", JOptionPane.ERROR_MESSAGE);
+           
             }
             else {//else insert into table
             
             String SelectQuery2 = "insert into flight_booking.air_name values ('"+inputairport+"')"; //Query Statement
-           stat.executeQuery(SelectQuery2);//execute the query
+              ResultSet rs1 = stat.executeQuery(SelectQuery2); //execute the query
+           
             jTextField1.setText("");//set text to intital value
             JOptionPane.showMessageDialog(this, "Airport added Successfully");
+            
+            
+            
+            
             }
-      
+            
         } catch (Exception e) 
         {
 
         }
+            
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

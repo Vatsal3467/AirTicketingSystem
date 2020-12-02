@@ -110,7 +110,7 @@ public class viewbookings extends javax.swing.JFrame {
                  seatcapacity=rs.getInt(2);//get seats
                  initialprice=rs.getInt(3);//get initial price
                  
-                 bookedseats=(seatcapacity-availableseats)+1;//chnage book seates to add 1
+                 bookedseats=(seatcapacity-availableseats)-1;//chnage book seates to add 1
                  
                 if (availableseats>=0)//check for avaiable seats
                 {

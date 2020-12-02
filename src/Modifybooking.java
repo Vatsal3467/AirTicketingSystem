@@ -45,6 +45,16 @@ public class Modifybooking extends javax.swing.JFrame {
     public String res;
     public String selected_day;
 
+       public Date date1;
+    
+    public int availableseats;
+    public int seatcapacity;
+    public int bookedseats;
+    public double initialprice;
+    
+    
+    
+    
     public Modifybooking() {
         initComponents();
     }
@@ -131,6 +141,146 @@ public class Modifybooking extends javax.swing.JFrame {
         }
         }
     }
+   
+    
+    
+ void update_available_seats_on_modify(){
+         Connection conn; //declaring variable
+        ResultSet rs;
+        ResultSet rs1;
+        
+      try { //Connection with the Azure SQL
+        
+         
+         
+        
+          
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //Connection driver
+            conn = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem01.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem01;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");//Connection string
+            java.sql.Statement stat = conn.createStatement();
+            String Selectdate=("select traveldate,flight_id FROM flight_booking.Passenger_Info where bookingID='"+booking_id+"'");//query
+            ResultSet rs55=stat.executeQuery(Selectdate);
+            while (rs55.next())//if result is present
+            {
+            String traveldate1 =rs55.getString("traveldate");//get travel date
+            System.out.println(traveldate1);
+            date1 = new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(traveldate1).getTime());//change date in given format
+            b_id = rs55.getString("flight_id");//get booked id
+           // System.out.println("dt payment "+date1);
+         // System.out.println("flight id ="+b_id);
+            }
+            String SelectQuery = "select b.availableseats,c.seatingcapacity,a.Price from flight_booking.Flight_Detail a inner join flight_booking.seatavailabilty b on a.f_id=b.f_id inner join flight_booking.aircraft_details c on c.aircraft_modelname=a.aircraft_model where a.f_id ='"+b_id+"' and b.deptdate='"+date1+"' "; //Query Statement
+            rs = stat.executeQuery(SelectQuery);//Executing Query
+            while (rs.next()) {//Displaying results 
+                 System.out.println("hit");
+                 availableseats = rs.getInt(1);    //get pricing
+                 seatcapacity=rs.getInt(2);//get seats
+                 initialprice=rs.getInt(3);//get initial price
+                 
+                 bookedseats=(seatcapacity-availableseats)-1;//chnage book seates to add 1
+                 
+                if (availableseats>=0)//check for avaiable seats
+                {
+                   System.out.println("hit2"); 
+                    availableseats+=1;
+                
+                String update_seats = "update flight_booking.seatavailabilty set availableseats='"+availableseats+"',bookedseats='"+bookedseats+"' where f_id ='"+b_id+"' and deptdate='"+date1+"'"; //query
+                rs1=stat.executeQuery(update_seats);//execute query
+                }
+                else {
+                }
+                                         
+            }
+            
+      } catch (Exception e) 
+        {
+
+        }
+    }
+    
+    
+    void add_seats(){
+        
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //Connection driver
+         Connection conn = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem01.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem01;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");//Connection string
+ 
+            Statement uml = conn.createStatement();
+            String sql = "select deptdate FROM flight_booking.seatavailabilty where f_id='"+b_id+"' and deptdate='"+traveldate+"'";//query
+            
+           ResultSet rs = uml.executeQuery(sql); //Executing Query
+            System.out.println(traveldate);
+            if (rs.next())//if results are present 
+            {
+                Date dt=rs.getDate("deptdate");//update date
+           
+            }
+            else {//if date not present, create the date
+                try{
+                    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //Connection driver
+                    Connection con2 = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem01.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem01;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");//Connection string
+                    Statement uml2 = con2.createStatement();//create statement
+                    java.sql.Date sqldate11 = new java.sql.Date(jDateChooser1.getDate().getTime());//getting date
+                    String sql2="insert into flight_booking.seatavailabilty (deptdate,f_id,currentprice,availableseats) select'"+sqldate11+"', a.f_id,a.Price,b.seatingcapacity FROM flight_booking.aircraft_details b inner join flight_booking.Flight_Detail a on a.aircraft_model=b.aircraft_modelname where a.f_id='"+b_id+"'"; //quert
+                    uml2.executeQuery(sql2);//ececute query
+//              
+
+                }catch (Exception ed)
+                {
+                }
+            }
+            
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //Connection driver
+            Connection con2 = DriverManager.getConnection("jdbc:sqlserver://flightbookingsystem01.database.windows.net:1433;database=flight_booking_system;user=Aritra@flightbookingsystem01;password=Flightbooking_1234;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");//Connection string
+ 
+            Statement stat1 = con2.createStatement();
+            String SelectQuery1 = "select b.availableseats,c.seatingcapacity,a.Price from flight_booking.Flight_Detail a inner join flight_booking.seatavailabilty b on a.f_id=b.f_id inner join flight_booking.aircraft_details c on c.aircraft_modelname=a.aircraft_model where a.f_id ='"+b_id+"' and b.deptdate='"+traveldate+"' "; //Query Statement
+            ResultSet rs2 = stat1.executeQuery(SelectQuery1);//Executing Query
+           
+            if(rs2.next()) {//Displaying results 
+                System.out.println("hit3");
+                int availableseatsm = rs2.getInt(1);//availabe seats
+                int seatcapacitym =rs2.getInt(2);//total capacity
+                int initialpricem =rs2.getInt(3);//price
+                
+                
+                
+                System.out.println("availableseats = "+availableseatsm);
+                System.out.println("seatcapacity = "+seatcapacitym);
+                System.out.println("initialprice = "+initialpricem);
+                
+                int bookedseatsm=(seatcapacitym-availableseatsm)+1; //variable booked seats
+                 
+                if (availableseatsm>0)//if avaiable seats are higher than 0
+                {
+                    System.out.println("hit4");
+                    availableseatsm-=1;
+                    
+                    String update_seats = "update flight_booking.seatavailabilty set availableseats='"+availableseatsm+"',bookedseats='"+bookedseatsm+"' where f_id ='"+b_id+"' and deptdate='"+traveldate+"'";//query
+                    stat1.executeUpdate(update_seats);//execute the query
+                }
+                else {};
+                                         
+            }
+//            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Modifybooking.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Modifybooking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+            
+            
+      
+        
+        
+        
+    }
+    
+    
+    
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -201,7 +351,7 @@ public class Modifybooking extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 650, 120, 50));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 690, 120, 50));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("BACK");
@@ -223,7 +373,7 @@ public class Modifybooking extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/white.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 90));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 90));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Arrival");
@@ -261,7 +411,7 @@ public class Modifybooking extends javax.swing.JFrame {
 
         jLabel12.setForeground(new java.awt.Color(255, 0, 51));
         jLabel12.setText("Please Enter New Date Here");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 590, 160, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 600, 160, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Travel Date");
@@ -280,11 +430,10 @@ public class Modifybooking extends javax.swing.JFrame {
 
         jTextField7.setEditable(false);
         jTextField7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField7.setMinimumSize(new java.awt.Dimension(7, 23));
         getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 333, 30));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/background.jpeg"))); // NOI18N
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1070, 730));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1070, 720));
 
         pack();
         setLocationRelativeTo(null);
@@ -336,10 +485,12 @@ public class Modifybooking extends javax.swing.JFrame {
         else if(selected_day.equals(res)){
 
         String bid = booking_id;
-
+        update_available_seats_on_modify();
+        add_seats();
         System.out.println("traveldate="+selected_day); //printing out date
         System.out.println("selected day="+res);
 
+        
         
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //Connection driver
@@ -359,6 +510,7 @@ public class Modifybooking extends javax.swing.JFrame {
         }
         jTextField6.setText(traveldate);
         JOptionPane.showMessageDialog(this, "booking updated successfully"); //show message of updtaded booking
+       
         }
         
 //        

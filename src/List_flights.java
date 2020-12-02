@@ -245,7 +245,7 @@ public class List_flights extends javax.swing.JFrame {
 
         alert.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         alert.setForeground(new java.awt.Color(255, 0, 51));
-        getContentPane().add(alert, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 450, 600, 30));
+        getContentPane().add(alert, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 630, 40));
 
         trial.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         getContentPane().add(trial, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 1040, 40));

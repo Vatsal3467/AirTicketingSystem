@@ -260,7 +260,7 @@ public class aircraft extends javax.swing.JFrame {
         panel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 23, 160, -1));
 
         jLabel12.setText("Aircraft Name");
-        panel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        panel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         remove.setText("Remove");
         remove.addActionListener(new java.awt.event.ActionListener() {
@@ -268,7 +268,7 @@ public class aircraft extends javax.swing.JFrame {
                 removeActionPerformed(evt);
             }
         });
-        panel4.add(remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 80, 30));
+        panel4.add(remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 80, 30));
 
         aircraftname3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
